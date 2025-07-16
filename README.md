@@ -24,9 +24,7 @@ IDL Debate Hackathon’25 Repository
 ---
 
 **Members**
-**Ashi Jain**
-**Raghav Anthwal**  
-**Shashwati Chandra**
+Ashi Jain, Raghav Anthwal, Shashwati Chandra
 
 ---
 Built with 💡 to simulate intelligent debates.
