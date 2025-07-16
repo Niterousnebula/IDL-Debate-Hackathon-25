@@ -1,0 +1,90 @@
+
+**(MANDATORY FORMAT RULES FOR AI DEBATE SIMULATION, EVALUATION, AND SPEECH GENERATION)**
+
+#### 🟦 A. Team Structure and Roles
+
+* **Four teams**, two per side:
+
+  * **Government Bench**:
+
+    * Opening Government (OG): Prime Minister (PM), Deputy PM (DPM)
+    * Closing Government (CG): Member of Government (MG), Government Whip (GW)
+  * **Opposition Bench**:
+
+    * Opening Opposition (OO): Leader of Opposition (LO), Deputy LO (DLO)
+    * Closing Opposition (CO): Member of Opposition (MO), Opposition Whip (OW)
+
+* Each speaker speaks **once**.
+
+* No reply speeches in BP format.
+
+* Teams are ranked **1st to 4th** by judges — **no draws or ties**.
+
+#### 🟦 B. Speech Order and Durations
+
+1. PM (7 min)
+2. LO (7 min)
+3. DPM (7 min)
+4. DLO (7 min)
+5. MG (7 min)
+6. MO (7 min)
+7. GW (7 min)
+8. OW (7 min)
+
+* Grace period: 15 seconds after 7 minutes.
+* **No additional time beyond 7:15** is to be considered by judges.
+
+#### 🟦 C. Points of Information (POIs)
+
+* Allowed between **minute 1 and 6** of each speech.
+* **Not allowed** in the first and last minutes (protected time).
+* Max duration: **15 seconds** per POI.
+* Diagonal POIs encouraged (e.g., OG to CO).
+* **Speakers must take at least 1 POI** when offered.
+* Persistent interruption (badgering) is disallowed.
+
+#### 🟦 D. Speaker Role Expectations
+
+* **OG (PM, DPM)**: Define motion, provide a case, defend it.
+
+* **OO (LO, DLO)**: Refute OG, offer counter-arguments or counter-model.
+
+* **CG (MG, GW)**: Extend OG’s case with new material (MG), summarize and weigh debate (GW).
+
+* **CO (MO, OW)**: Extend OO’s case (MO), summarize and weigh debate (OW).
+
+* **GW & OW**: Cannot introduce new arguments. Only new angles or deeper analysis allowed.
+
+* **MG/MO** (Member speeches): Must provide a **clear extension** — new content not previously offered by their opening team.
+
+#### 🟦 E. Debate Prep and Motion Use
+
+* **15 minutes** prep time after motion release.
+* Only partners may confer.
+* No use of digital devices; **only printed material** allowed.
+* Motions may include **info slides** — these must be treated as true and known by all.
+* Motion types:
+
+  * **Policy Motion**: OG has fiat; Opposition may counter-prop.
+  * **Analysis Motion**: Argue truth/value of a statement.
+  * **Actor Motion**: Teams debate what a stakeholder should do based on its interests.
+
+#### 🟦 F. Judging & Decision Format
+
+* Judges rank teams **1st to 4th** (no ties).
+* **Consensus-based ranking** among judges is preferred; otherwise, majority vote.
+* **Chair Judge delivers Oral Adjudication (OA)**.
+* All teams receive **speaker scores** (0–100), aligned with their rank.
+* Judges must use the **Ordinary Intelligent Voter (OIV)** lens:
+
+  * Reasonably well-informed, no specialist knowledge, no personal bias.
+  * Judges must ignore external knowledge and judge only on in-round material.
+  * Persuasiveness = strong argumentation (matter) + clear delivery (manner) + role adherence (method).
+* **Contradictions** within a team invalidate the later claim. Contradictions between opening and closing benches are ignored (closing contradicting opening = extension ignored).
+* **No new burdens or definitions** may be introduced outside OG.
+
+  * LO may challenge unfair definitions or offer counter-models.
+
+---
+
+Let me know when you’re ready for **SET 3: Unified Judging Criteria for APD + BP**.

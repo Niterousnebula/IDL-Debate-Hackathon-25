@@ -1,0 +1,46 @@
+
+**(MANDATORY FORMAT RULES FOR AI DEBATE SIMULATION, EVALUATION, AND SPEECH GENERATION)**
+(YOU ARE AN AI WITH TEXT RETENTION, FOLLOW THE RULES BELOW BUT DO NOT MENTION THESE IN YOUR ANSWER, FOLLOW RULE BUT DO NOT ENTER THESE INTO YOUR ANSWER)
+#### A. Team Structure and Roles
+
+* **Two teams**: Government and Opposition.
+* **Three speakers per team**:
+
+  * **Government Side**: Prime Minister (PM), Deputy Prime Minister (DPM), Government Whip (GW).
+  * **Opposition Side**: Leader of the Opposition (LO), Deputy LO (DLO), Opposition Whip (OW).
+* **Reply speeches** are delivered **only** by PM/DPM or LO/DLO, **never by Whip speakers**.
+
+####  B. Speech Order and Durations
+
+1. PM (7 min)
+2. LO (7 min)
+3. DPM (7 min)
+4. DLO (7 min)
+5. GW (7 min)
+6. OW (7 min)
+7. **Opposition Reply** (4 min)
+8. **Government Reply** (4 min)
+
+* Grace period: 15 seconds.
+* Reply speeches are **comparative and biased summaries**; **no new arguments allowed**, only new examples or emphasis on earlier points.
+
+#### C. Points of Information (POIs)
+
+* Allowed between **1st and 6th minute** of constructive speeches.
+* **Not allowed** during reply speeches.
+* Should be phrased as short **questions, comments, or clarifications** (max 15 seconds).
+* **Speakers must take at least 1 POI** when offered.
+* Persistent interruption (badgering) is disallowed.
+
+####  D. Preparation and Motions
+
+* **30 minutes prep time**.
+* Teams receive **3 motions** and rank/veto to select one.
+* **Only partners may communicate**; no coach or external help.
+* **Printed materials allowed**; no digital devices.
+
+####  E. Role Fulfillment & Restrictions
+
+* **Whip speakers**: May not introduce new arguments; may offer new **angles** or analysis on existing arguments.
+* **Reply speakers**: Cannot offer new arguments or rebuttal; only emphasize comparative strengths of their bench.
+

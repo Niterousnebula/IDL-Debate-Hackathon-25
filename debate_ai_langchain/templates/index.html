@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Debate (Live)</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #eee;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 26px;
+      background-color: #1e1e1e;
+      color: #66ffcc;
+    }
+
+    form {
+      text-align: center;
+      padding: 20px;
+      background-color: #1c1c1c;
+      border-bottom: 1px solid #333;
+    }
+
+    input, select, textarea, button {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 15px;
+      border: none;
+      outline: none;
+    }
+
+    textarea {
+      width: 300px;
+      height: 80px;
+      background-color: #2a2a2a;
+      color: #eee;
+      border: 1px solid #444;
+    }
+
+    button {
+      background-color: #66ffcc;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .debate-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .speech {
+      flex: 1;
+      margin: 10px;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .results, .winner-banner {
+      padding: 20px;
+      background-color: #1a1a1a;
+      margin: 20px auto;
+      border-radius: 8px;
+      border: 1px solid #333;
+      width: 80%;
+    }
+
+    .highlight {
+      color: #00ff99;
+      font-size: 18px;
+      white-space: pre-wrap;
+    }
+
+    .audio-player {
+      text-align: center;
+      margin: 10px;
+    }
+
+    #loading-screen {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(18,18,18,0.95);
+      z-index: 9999;
+      text-align: center;
+      color: #66ffcc;
+      font-size: 24px;
+      padding-top: 150px;
+    }
+
+    .loader-bar {
+      margin: 30px auto;
+      width: 60%;
+      height: 20px;
+      background-color: #333;
+      border-radius: 10px;
+    }
+
+    .loader-progress {
+      height: 100%;
+      width: 0%;
+      background-color: #66ffcc;
+    }
+    .form-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-fields > * {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <header> AI Debate Simulator</header>
+
+  <div id="loading-screen">
+    <div>Generating debate, please wait...</div>
+    <div class="loader-bar"><div class="loader-progress" id="loader-progress"></div></div>
+  </div>
+
+  <form id="debate-form" onsubmit="return false;">
+  <div class="form-fields">
+    <select name="format" id="format" required>
+      <option value="">Select Format</option>
+      <option value="BP">British Parliamentary</option>
+      <option value="AP">Asian Parliamentary</option>
+    </select>
+    <input type="text" id="topic" name="topic" placeholder="Debate Topic" required>
+    <textarea name="context" id="context" placeholder="Provide context"></textarea>
+    <button type="submit">Start Debate</button>
+  </div>
+</form>
+
+  <div class="debate-container">
+    <div class="speech">
+      <h2>🟢 FOR the Motion</h2>
+      <pre id="speech-for"></pre>
+      <div class="audio-player">
+        <audio controls id="audio-for" style="width:100%">
+          <source src="/static/for_speaker.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <div class="speech">
+      <h2>🔴 AGAINST the Motion</h2>
+      <pre id="speech-against"></pre>
+      <div class="audio-player">
+        <audio controls id="audio-against" style="width:100%">
+          <source src="/static/against_speaker.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>AI Judgment</h2>
+    <p class="highlight" id="judgment"></p>
+  </div>
+
+  <div class="winner-banner" id="winner-banner" style="display:none; text-align:center; font-size:22px; color: #66ffcc;">
+    🏆 <span id="winner-name"></span> 🏆
+  </div>
+
+  <script>
+    const form = document.getElementById('debate-form');
+    const loaderScreen = document.getElementById('loading-screen');
+    const loaderProgress = document.getElementById('loader-progress');
+    const speechForEl = document.getElementById('speech-for');
+    const speechAgainstEl = document.getElementById('speech-against');
+    const judgmentEl = document.getElementById('judgment');
+    const winnerBanner = document.getElementById('winner-banner');
+    const winnerName = document.getElementById('winner-name');
+
+    const socket = io();
+
+    form.addEventListener('submit', function () {
+      loaderScreen.style.display = 'block';
+      loaderProgress.style.width = '0%';
+      speechForEl.textContent = '';
+      speechAgainstEl.textContent = '';
+      judgmentEl.textContent = '';
+      winnerBanner.style.display = 'none';
+
+      let topic = document.getElementById('topic').value;
+      let context = document.getElementById('context').value;
+      let format = document.getElementById('format').value;
+
+      socket.emit('start_debate', { topic, context, format });
+
+      let progress = 0;
+      const simulate = setInterval(() => {
+        if (progress >= 90) clearInterval(simulate);
+        progress += Math.random() * 10;
+        loaderProgress.style.width = progress + '%';
+      }, 300);
+    });
+
+    socket.on('stream_for', data => {
+      speechForEl.textContent = cleanOutput(data.text);
+    });
+
+    socket.on('stream_against', data => {
+      speechAgainstEl.textContent = cleanOutput(data.text);
+    });
+
+    socket.on('stream_judgment', data => {
+      judgmentEl.textContent = cleanOutput(data.judgment);
+
+      const winner = detectWinner(data.judgment);
+      if (winner !== "unknown") {
+        winnerName.textContent = winner + " WINS THE DEBATE!";
+        winnerBanner.style.display = "block";
+      }
+
+      loaderProgress.style.width = '100%';
+    });
+
+    socket.on('stream_done', data => {
+      setTimeout(() => {
+        loaderScreen.style.display = 'none';
+
+        const audioFor = document.getElementById("audio-for");
+        const audioAgainst = document.getElementById("audio-against");
+        const timestamp = new Date().getTime();
+
+        audioFor.querySelector('source').src = `/static/for_speaker.wav?${timestamp}`;
+        audioAgainst.querySelector('source').src = `/static/against_speaker.wav?${timestamp}`;
+
+        audioFor.load();
+        audioAgainst.load();
+
+        // Optional: auto-play FOR speaker after load
+        setTimeout(() => {
+          if (audioFor.readyState >= 2) {
+            audioFor.play().catch(err => console.warn("Autoplay blocked:", err));
+          }
+        }, 500);
+      }, 500); // Wait for file system flush
+    });
+
+    function cleanOutput(text) {
+  return text
+    .replace(/<think>[\s\S]*?<\/think>/gi, '') // remove <think> tags
+    .replace(/[-*]/g, '')                      // remove dashes and asterisks
+    .trim();
+}
+
+
+    function detectWinner(text) {
+      const winPattern = /(FOR|AGAINST|GOVERNMENT|OPPOSITION)\s+(WINS?|IS\s+THE\s+WINNER|TRIUMPHED|WAS\s+STRONGER)/i;
+      const match = text.match(winPattern);
+      return match ? match[1].toUpperCase() : "unknown";
+    }
+  </script>
+</body>
+</html>
