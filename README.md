@@ -15,13 +15,14 @@ IDL Debate Hackathon’25 Repository
 
 ## ✅ To-Do
 
-- [ ] Add support for downloadable audio.
-- [ ] Replace pyttsx3 with human-like TTS (e.g., Coqui, Sarvam AI).
-- [ ] Add multi-speaker support for full BP/APD formats.
-- [ ] Store past debates in a database.
-- [ ] User login & leaderboard.
-
----
+-Integrated British and Asian Parliamentary debate styles.
+-AI speech generation and adjudication logic.
+-Real-time updates using WebSockets.
+-Automatic cleanup of stale debate files.
+-Dynamic voice switching using `pyttsx3` for more realism.
+-Custom loader and progress bar during generation.
+-Responsive, clean frontend interface with theme support.
+-Audio buffering detection with playback assurance.
 
 **Members**
 Ashi Jain, Raghav Anthwal, Shashwati Chandra
