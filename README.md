@@ -25,11 +25,11 @@ IDL Debate Hackathon’25 Repository
 -Audio buffering detection with playback assurance
 ---
 
-
+--
 **Members**
 Ashi Jain, Raghav Anthwal, Shashwati Chandra
 
----
+--
 Built with 💡 to simulate intelligent debates.
 
 ---
