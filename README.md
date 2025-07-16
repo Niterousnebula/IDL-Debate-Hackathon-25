@@ -13,8 +13,8 @@ IDL Debate Hackathon’25 Repository
 
 ---
 
-## ✅ To-Do
-
+## ✅ Features
+-
 -Integrated British and Asian Parliamentary debate styles.
 -AI speech generation and adjudication logic.
 -Real-time updates using WebSockets.
@@ -22,7 +22,9 @@ IDL Debate Hackathon’25 Repository
 -Dynamic voice switching using `pyttsx3` for more realism.
 -Custom loader and progress bar during generation.
 -Responsive, clean frontend interface with theme support.
--Audio buffering detection with playback assurance.
+-Audio buffering detection with playback assurance
+---
+
 
 **Members**
 Ashi Jain, Raghav Anthwal, Shashwati Chandra
