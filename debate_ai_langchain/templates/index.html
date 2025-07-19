@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <title>AI Debate (Live)</title>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
   <style>
+    * {
+      transition: all 0.3s ease;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Rubik', sans-serif;
       background-color: #121212;
       color: #eee;
     }
@@ -18,6 +23,8 @@
       font-size: 26px;
       background-color: #1e1e1e;
       color: #66ffcc;
+      box-shadow: 2px 2px 5px 1px #fff;
+
     }
 
     form {
@@ -45,10 +52,21 @@
     }
 
     button {
-      background-color: #66ffcc;
+      background: linear-gradient(135deg, #66ffcc, #33cc99);
       color: #000;
-      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 15px rgba(102, 255, 204, 0.2);
     }
+
+    button:hover {
+      background: #000;
+      color: #66ffcc;
+      border: 2px solid #66ffcc;
+      transform: scale(1.05);
+    }
+
 
     .debate-container {
       display: flex;
@@ -68,6 +86,32 @@
       box-shadow: 0 0 10px #000;
     }
 
+    .speech:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 255, 204, 0.15);
+    }
+
+    .speech h2 {
+      font-size: 20px;
+      color: #00ffc3;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.6;
+      color: #e0fdfa;
+      font-size: 16px;
+      max-height: 300px;
+    }
+
+
     .results, .winner-banner {
       padding: 20px;
       background-color: #1a1a1a;
@@ -76,6 +120,14 @@
       border: 1px solid #333;
       width: 80%;
     }
+
+    .speech, .results, .winner-banner {
+      background: rgba(30, 30, 30, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 255, 200, 0.1);
+      border: 1px solid rgba(102, 255, 204, 0.2);
+    }
+
 
     .highlight {
       color: #00ff99;
@@ -113,23 +165,40 @@
     .loader-progress {
       height: 100%;
       width: 0%;
-      background-color: #66ffcc;
+      background: linear-gradient(
+        90deg,
+        #66ffcc 0%,
+        #33cc99 25%,
+        #00cc88 50%,
+        #33cc99 75%,
+        #66ffcc 100%
+      );
+      transition: width 0.3s ease;
     }
-    .form-fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.form-fields > * {
-  width: 300px;
-  margin-bottom: 10px;
-}
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-fields > * {
+      width: 300px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #66ffcc;
+      font-size: 22px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
 
   </style>
 </head>
 <body>
-  <header> AI Debate Simulator</header>
+  <header style="font-weight:700"> AI Debate Simulator</header>
 
   <div id="loading-screen">
     <div>Generating debate, please wait...</div>
